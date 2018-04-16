@@ -111,3 +111,65 @@ Brainstoming: Es una lluvia de ideas de qué palabras claves son para nuestra p�
 - [Keyword](http://keyword.io/): Conecta términos que son usados y los agrupa.
 
 El proyecto trata de un seguro donde podemos elegir un modelo de auto para elegir cuánto debe pagar por cada aseguradora.
+
+# Volúmenes de búsquedas
+
+¿Cómo me están buscando los usuarios?
+
+Entramos a google search control->Search Traffic->Search analytics => Encontraremos las keyworks de los usuarios al entrar en nuestra página.
+
+> Los usuarios que googlean el nombre de la marca son los que andan buscando tus usuarios.
+
+¿Cuántos usuarios buscan estas palabras?
+
+Entrando en Google Adworks -> Herramientas -> Planificador de palabras claves -> Obtener datos y tendencias de volúmenes de búsqueda. (Debemos pegar una lista [500 términos a la vez] y un país objetivo).
+
+Las descargamos para excel pero con información de Google Adworks (La información que nos interesan esAvg Monthly Search). De esta forma hacemos una lista de 500 términos a 175.
+
+# Dificultad, oportunidad y potencial
+
+El primer paso es ver qué volumen de búsqueda tiene cada palabra. El segundo paso es saber qué tan difícil es para el sitio ubicarse en esa palabra.
+
+Para sacar las métricas usamos [Moz](https://moz.com/explorer)
+
+Devuelve
+- Volume
+- Difficulty: Qué tan difícil es posicionarse en ese sitio.
+- Opportunity: Qué tan probable es que alguien haga click a resultados orgánicos.
+- Potencial: Métrica que agrupa todos los factores.
+
+> La keywork que tenga mejor potencial será la utilizada para posicionarme.
+
+También se puede crear una lista de la plataforma.
+
+Es una herramienta paga, pero tiene una prueba gratuita por tiempo limitada.
+
+Usaremos -> Difficulty, Opportunity And potencial.
+
+Creamos una lista:
+Keyword | Agv. Monthly Search | Difficulty | Opportunity | Potencial
+
+**Y ordenamos por potencial**
+
+El paso siguiente es saber cómo nos estamos posicionado **Hoy** y el de nuestra competencia.
+
+Para ello usamos [AuthorityLabs](https://nucleos.ala.bs/domains/new)
+
+Ingresamos nuestro dominio y el de nuestra competencia.
+
+Buscamos para Google y las primeras 174 palabras claves. Est proceso puede tardar entre 15 minutos a 1 hora.
+
+Buscamos el traking del competidor para saber dónde estamos parados frente a la competencia.
+
+La información que interesa es qué posición tenemos en Google y cuál url.
+
+Luego se hace un top 5 (de los primeros 5 lugares por búsqueda y contamos la cantidad de enlaces) en comparación con la competencia.
+
+De esta forma tenemos un listado final de las keyworks.
+
+Repasando -> Pasos para un keyword research
+
+- Brainstorming (Definir palabras claves unas 500)
+- Obtener volúmenes de búsqueda (reducir a 175)
+- Obtener dificultad, oportunidad y potencial
+- Obtener posiciones actuales.
