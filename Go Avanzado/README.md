@@ -375,5 +375,6 @@ Para la creación de API con Go, beego tiene la ventaja de crear un proecto. Otr
 - Haciendo ***// TODO: Mensaje*** Podemos en un directorio más arriba agregar ***grep -rn "TODO" .*** y de esta forma nos aparecerá en la consola el mensaje. Ideal para pendientes. Algo del framework en el ***var HeaderFilter*** para evitar XSS. Que está por defecto.
 - Cuando retornamos un nil no va a buscar la vistas
 - Hay momentos en que Revel compila internamente, esto dura un poco. Pero no debería durar mucho tiempo, en ese caso revisar las rutas o cambios.
-- Para llevar una variable a otro controlador: ***var user = "Ivan"*** y ***eturn c.Render(user)*** para usar en el html ***{{.user}}
-- Para recibir y retornar el tipo de variables en una función con un canal. Se hace ***func Inpunt(input <-chan string) <-chan string{}***
+- Para llevar una variable a otro controlador: ***var user = "Ivan"*** y ***eturn c.Render(user)*** para usar en el html ***{{.user}}- Para recibir y retornar el tipo de variables en una función con un canal. Se hace ***func Inpunt(input <-chan string) <-chan string{}***
+
+- Descargar todas las librerías dependencias en go **go get -v ./...**
