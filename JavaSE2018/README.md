@@ -85,6 +85,10 @@ int i = (int) d;
 
 El casteo es de menor a mayor es automático, en sentido inverso requiere un casteo.
 
+# Arrays
+
+Son objetos en los que podemos guardar más de una variable.
+
 # Ejemplos de Arrays
 
 Los arrays son inmutables, las maneras de declararlos son:
@@ -96,3 +100,131 @@ char[][] days = {{'M', 'T', 'W'}, {'M', 'T', 'W'}};
 ```
 
 > Arreglos de más de 4 dimesiones ya no es una buena práctica en la proogramación. Para estos casos lo mejor es utilizar bases de datos.
+
+# Búsqueda de elementos en Arrays e índices
+
+char[] names = new char[3];
+names[0]='h';
+names[1]='o';
+names[2]='l';
+
+Ejemplo del chango
+char[][][][] mokey = new char[2][3][2][2];
+mokey[1][0][0][1] = 'm';
+
+# Tipos de operaciones en Java
+
+Con + podemos concatenar textos
+
+double x = 2.56;
+int y = 9;
+float w = (float)x + y;
+
+Operadores de asignación:
+
++=, -=, *=, /=, %=
+
+
+// Esto es aplicable en las operaciones como por ejemplo System.out.println
+++i -> Primero incrementa el valor y luego lo asigna a la variable
+i++ -> Primero asigna valor a l y luego incrementa el valor
+
+==, !=
+
+# Operadores relacionales y lógicos
+
+>, <, >=, <=
+
+# If, else y switch
+
+switch(mes){
+  case 1:
+    System.out.println("Enero");
+    break;
+  case 2:
+    System.out.println("Febrero");
+    break
+  default:
+    break
+}
+
+# Ciclo while
+
+while (condición){
+  // Código
+}
+
+do {
+  // Código  
+
+}(condición)
+
+> "do-while es muy común utilizarlo cuando trabajamos con menús"
+
+Ejemplo:
+```
+package com.osmandi;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		int exit = 0;
+		do {
+			System.out.println("Bienvenidos Amazon Viwer\n");
+			System.out.println("Selecciona el número de la opción desdeada");
+			System.out.println("1. Movies");
+			System.out.println("2. Series");
+			System.out.println("3. Books");
+			System.out.println("4. Megazine");
+			System.out.println("0. Exit");			
+
+		}while(exit !=0);
+	}
+}
+```
+
+# Ciclo for y foreach
+
+**For**
+
+for(inicializacion, condicion, incremento){
+  // Comandos
+}
+
+**foreach**
+
+Nota: Números es el arreglo y j es el valor de la variable.
+
+for (int j:numeros){
+  // Código
+}
+
+A nivel de performance foreach es más rápido pero en for sí tenemos acceso al índice. Pero en foreach no tenemos acceso al índice.
+
+Para un foreach anidado
+
+```
+public class ForEachAninado {
+ 
+    public static void main(String[] args) {
+ 
+        //Definimos un array de 3 filas x 5 columnas
+        int array[][]={{1,2,3,4,5}, {6,7,8,9,10}, {11,12,13,14,15}};
+ 
+        //Recorremos el array multidimensional
+        for (int[] arrayInterno : array){
+            for(int numero: arrayInterno){
+                System.out.println(numero);
+            }
+        }
+    }
+ 
+}
+```
+
+break -> Sale de todo el bucle de la sentencia.
+continue -> Retorna al comienzo de la sentencia.
+return -> Retorna un valor del ciclo o función termiando la misma.
