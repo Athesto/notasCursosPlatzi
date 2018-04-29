@@ -228,3 +228,53 @@ public class ForEachAninado {
 break -> Sale de todo el bucle de la sentencia.
 continue -> Retorna al comienzo de la sentencia.
 return -> Retorna un valor del ciclo o función termiando la misma.
+
+# Programación orientada a objetos
+
+Se trata de descomponer un problema en subproblemas y más subproblemas.
+
+**"Divide y vencerás"**
+
+Para ello ver un problema como un escenario del problema y tratar de simularlo con objetos. No pensar directamente en la solución, podría no ser la mejor solución.
+
+Los atributos deben ser sustantivos y los métodos deben ser verbos.
+
+# Análisis de un objeto y qué es una clase
+
+Una clase es la forma en cómo defines tu objeto, para generar objetos.
+
+Primeros colocamos los atributos y luego los métodos.
+
+# Analizando nuestro proyecto
+
+Ann primero plantea todas las posibles clases
+
+|Movie | Chapter | Serie |
+|------|---------|-------|
+|id    | id      | id    |
+|title | title   | title | 
+|genre | duration | genre |
+|creator | year  | creator          |
+|duration | viewed  | duration      |
+| year | timeViewed | year          |
+| viewed | sessionNumber | viewed   |
+| timeViewed |      | sessionQuanty |
+|        |          | charpters     |
+
+
+# Creando nuestro proyecto
+
+- Movie: id, title, genre, creator, duration, ear, viewed, timeViewed +see(), getters, setters.
+- Serie: id, title, genre, creator, duration, year, viewed, sessionQuality, chapters +getters, setters.
+- Chapter: id, title, duration, year, viewed, timeViewd, sessionNumber +see(), getters(), setters.
+- Books: id, title, editionDate, editorial, autores, isbn, readed, timeReaded +Getters,setters,read
+- Megazime: id, title, editionDate, autories +getters, setters
+
+Ann usa Drow.io para hacer los diagramas con sus librerías y dependencias.
+
+# Métodos y método constructor en Java
+
+Auto miAuto = new Auto();
+miAuto.marca = "Ferrari";
+
+El método constructor nunca va a regresar un valor.
