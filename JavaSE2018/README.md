@@ -278,3 +278,71 @@ Auto miAuto = new Auto();
 miAuto.marca = "Ferrari";
 
 El método constructor nunca va a regresar un valor.
+
+# Miembtros estáticos y final
+
+- Static: Se pueden usar en toda la clase. Todos los métodos de la clase main deben ser estático. Puede ser invocado en una clase que no tiene instancia de la clase. Los métodos estáticos ayudan a ahorrar memoria. -> **Calculadora.suma(a,b)**. E incluso editar los valores de la variable.
+
+# Sobrecargas de métodos
+
+A veces necesitamos que dos métodos tengan el mismo nombre pero con diferentes argumentos que devuelvan diferentes valores. Ejemplo la suma dos valores enteros y otra con valores flotantes.
+
+Puede ocurrir en los métodos y también en los constructores.
+
+# Modificadores de acceso
+
+Ann genera los campos con el IDE en la clase. el id debe generarse automáticamente.
+
+Generamos el constructor Movie con title, genre y year.
+
+- Public: Clase, Package, Subclase, otros.
+- Portected: Clase, Package, Subclase, Otros.
+- Default: Clase, Package.
+- private: Clase.
+
+Subclase es Herencia.
+
+Encapsular: Esconder con default o private.
+
+A todos los atributos le ponemos private del resto de las clases.
+
+# Getters y Setters
+
+Ello no permite acceder a nuestros atributos y métodos.
+
+> Es una buena práctica encapsular los atributos de las clases.
+
+Con Getter obtenemos el valor y Setter ingresamos el valor.
+
+La diferencia de usar o no Getter y Setter es que podemos usar un trozo de código de validación para aceptar los valores.
+
+Lo mejor es tener marcados todos los getters y setters.
+
+Las variables se guardan en el stack y los objetos en el heap.
+
+> Nota: Cuando se usan variables con short, se debe castear: **(short)2017**
+
+# Que es la herencia
+
+> Una de las filosofías de Java es reutilizar la mayor cantidad de código.
+
+Ann está reciclando los atributos repetidos entre las clases.
+
+Quedando de esta manera:
+- Film: id, title, genre, creator, duration, year, viewed +see()+getters+setters.
+- Movie: Hereda de Film -> id, timeViewed +see()+getters+setters().
+- Serie: Hereeda de Film -> id, sessionQuatility, chapters +getters+setters.
+- Chapter: Hereda de movie -> id, sessionNumber +see()+getters+setters.
+
+- Publication: title, editionDate, editorial, autores +getters+setters.
+- Book: Hereda de Publication -> id, isbn, readed, timeReaded +getters+setters.
+- Magazine: Hereda de Publication -> id +getters+stters.
+
+> La herencia es crear clases a partir de las ya existentes para reciclar código.
+
+# Super y this
+
+- Super: Se refiere a la clas padre.
+- this: Se refiere a la clase hija.
+
+Una subclase hereda todos los miembros de su súper clase que están declarados como public o protected.
