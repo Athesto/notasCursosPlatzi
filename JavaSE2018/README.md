@@ -346,3 +346,145 @@ Quedando de esta manera:
 - this: Se refiere a la clase hija.
 
 Una subclase hereda todos los miembros de su súper clase que están declarados como public o protected.
+
+# Implementando herencia en el proyecto
+
+> Lo mejor es modularizar la mayor parte del código. Aplicamos las herencias que mencionamos anteriormente.
+
+Con la herencia nos ahorramos mucho código, implementamos buenas prácticas en Java y modularizamos.
+
+
+# Poliformismo
+
+> Implícitamente todos los objetos que yo cree de una clase, estarán heredando de la clase Object (extedns Objects). Por eso es que cuando ponemos **super.** vemos los métodos y atributos de la clase Object.
+
+Entre los métodos de la clase Object está el método **toString()**. El cual podemos editarlo. Para ello debemos coloar la anotación **@Override**. Dicho método imprime de dónde proviene la clase y el puntero de memoria.
+
+Ejemplo de poliformismo:
+
+```
+@Override
+public String toString(){
+  return "Hola, este es el objetoMovie"
+}
+
+// Incovar con
+Movie movie = new Movie("Coco", "Animation", "", 120, (short)2017);
+System.out.println(movie.toString());
+
+// Nota: la impresión de movie retorna como si fuera movie.toString().
+```
+
+Sobreescritura: Cuando una clase hereda de otra, y en esta clase hija se redefine un método con distinto de la clase padre.
+
+**Los métodos marcados como final  o static no se pueden sobreescribor**
+
+También podemos reescribir constructores.
+
+Poliformismo: Posibilidad de construir varios métodos con el mismo nombre, pero con relación a la clase a la que pertenece cada uno, con comportamientos diferentes.
+
+En la clase Chapter, en vez de devolver getId() padre, devolvemos el del hijo.
+
+# Interfaces
+
+Es un tipo de referencia similar a una clase que podría contener solo constantes y definiciones de métodos, métodos con modificador de acceso default.
+
+Solo definiremos el método mas no el código. Es decir no bloques de código.
+
+> Ayuda mucho el diagrama de Ann con los métodos.
+
+Definir las entidades que pueden ser vializados: Movie, Chapter  Book.
+
+> Las interfaces permite relacionar métodos de diferentes familias (diferentes clases Padre).
+
+Se define la interfaz **IVisualible** en Movie y Book. Cuando implementemos los métodos de la interfaz en Movie, éstos por herencia heredarán a Chapter.
+
+> Nota: Interfaces para reutilizar métodos en diferentes familias (diferentes clases Padre) y la herencia para reutilizar métodos de la misma familia.
+
+Interfaz:
+```
+public interface IVisualizable{
+  Date startToSee(Date dateI);
+  void stopToSee(Date dateI, Date dateF);
+}
+```
+
+Implementación:
+```
+public class Movie extends Film implements IVisualizable {
+  // Code
+}
+```
+
+En las interfaces nombraremos los métodos y en las clases los definimos.
+
+# Implementando interfaces al proyecto
+
+Después de haber aplicado herencia (clase Film y Publication) y poliformismo (editar el método toString() que es el encargado de devolver información a invocar el método). Creamos la interface en el paquete models.
+
+Es buena práctica que las interfaces empiecen por I.
+
+> Las herencias no son múltiples pero las interfaces sí.
+
+En el caso de las interfaces es necesario editar los métodos.
+
+# Interfaz List, ArrayList y Vector
+
+Colecciones de datos: Se diferencian de los arrays en que su tamaño no es fijo. Se pueden realizar operaciones de añadir, eliminar, obtener, encontrar, encontrar o recorrer una colección.
+
+Las más comunes son: 
+- Set:
+  - HashSet:
+    - LinkedHashSet.
+  - SortedSet:
+    - NavigableSet
+    - TreeSet
+- List:
+  - ArrayList
+  - Vector
+- Queue(ésta ya no es muy utilizada):
+  - LinkedList
+  - PriorityQueue
+
+
+### List
+
+Se utiliza para almacenar colecciones de objetos, proviene del paquete java.util. No colecciones de datos primitivos.
+
+Las colecciones pueden estar ordenadas y con elementos repetidos.
+
+Métodos:
+- add(Object o): Añadir un objeto al final de la lista.
+- add(int indice, Object o): Añade un objeto a la lista en la posición indicada.
+- get(int indice): Devuelve el objeto de la lista de la posición indicada.
+- remove(int indice): Elimina el objeto en el índice indicado.
+- clear(): Elimina todos los elementos de la lista.
+- indexOf(Object o): Devuelve la posición de la primera vez que un elemento coincida con el objeto pasado por parámetro. Si el elemento no se encuentra devuelve -1.
+- lastIndexOf(Object o): Devuelve la posición de la última vez que un elemento coincida con el objeto pasado por parámetro. Si el elemento no se encuentra devuelve -1.
+- size(): Devuelve el número de elementos de la lista.
+- contains(Object o): Devuelve verdadero o falso si el objeto pasado en la lista coincide. Utiliza intrísicamente equals().
+
+> En java movie == movie2 -> Lo que compara es la dirección de memoria. Para comparar usar el método equals.
+
+### Set
+
+Puede estar o no ordenada pero o tiene elementos repetidos.
+
+- ArratList: Almacena un arreglo de objetos que puede cambiar de tamaño, tiene una capacidad que crece automáticamente.
+
+```
+// Lo que va entre los diamantes es el objeto
+ArrayList<String> androids = ArrayList<String>();
+
+androids.add("Jelly Bean");
+android.add("Kit Kat");
+android.add("Lollipod");
+```
+
+- Vector: Es muy similar a un array, la diferencia estriba en que un vector usa hilos y está sincronizado y un ArrayList no.
+
+# Creando e imprimiendo colecciones de datos
+
+Vamos a Implementar ArrayList en el proyecto.
+
+Está mejor visto "Sí" o "No". Cuando se pregunta si ha sido visto en vez de true o falae. Recuerda **No creamos aplicaciones para nosotros**.
