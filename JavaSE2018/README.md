@@ -488,3 +488,17 @@ android.add("Lollipod");
 Vamos a Implementar ArrayList en el proyecto.
 
 Está mejor visto "Sí" o "No". Cuando se pregunta si ha sido visto en vez de true o falae. Recuerda **No creamos aplicaciones para nosotros**.
+
+# Como leer datos desde la consola en Java
+
+Desde Java 5 tenemos la clase Scanner:
+
+```
+// TODO -> Se debe validar que sea un entero
+Scanner sc = new Scanner(System.in);
+int response = Integer.valueOf(sc.nextLine());
+```
+
+# Solución del reto de mostrar series y películas
+
+
