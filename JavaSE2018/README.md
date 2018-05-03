@@ -501,4 +501,86 @@ int response = Integer.valueOf(sc.nextLine());
 
 # Solución del reto de mostrar series y películas
 
+Aquí se termina la clase series y películas.
 
+# Escribir archivos File
+
+Aquí creamos un nuevo proyecto para dar ejemplo.
+
+```
+public class Report{
+  private String nameFile;
+  private String title;
+  private String content;
+  private String extension;
+
+  // Creamos getters y Setters
+
+  public void makeReport(){
+    
+    if ((getNameFile() != null) && (getTitle() != null) && (getContent() != null)){
+
+      // Crear el archivo, del paquete io
+      File file = new File(getNameFile()+"."+getExtension());
+      FileOutputStream fos = new FileOutputStream(file); // Va a recibir el archivo y prepararlo para escribir.
+      OutoutStreamWriter osw = new OutputStreamWriter(fos); // Convertir el stream de de bytes a caracteres.
+      BufferedWriter bw = new BufferedWriter(ows); // Es mucho más rápido
+      bw.write(getContent());
+      bw.close(); // Cada vez que usamos un buffer es bueno cerrarlo.
+
+    } else{
+      System.out.println("Ingresa los datos del archivo");
+    }
+  }
+}
+```
+
+Creamos la clase main
+```
+Report report = new Report();
+report.setNameFile("Reporte");
+report.setExtension("txt");
+report.setTittle(":: REPORTE ::");
+String content = report.getTittle();
+for (int i =0;i<=5; i++){
+  content += "\nReporte: " +i;
+}
+report.setContent(content);
+report.makeReport();
+
+```
+
+# Cómo crear e integrar un archivo jar de java
+
+En eclipse, clic derecho en el proyecto y export.
+
+- JAR file: Se exporta como una librería. (sin el main).
+- Runnable JAR file: Un archivo ejecutable  desde consola.
+
+Para agregar la librería a un proyecto, damos clic contrario a la carpeta del mismo, luego en **Bluid path** y seguido en **Add External Archives...**. Buscamos el JAR y listo. Pero de esta forma toma la ruta original del archivo.
+
+Ann crea una carpeta llamada libs donde guardar las librerías que creamos. Para que eclipse lo reconozca realizamos el mismo procedimiento pero con la nueva ruta.
+
+> "Es lindo utilizar tus propias librerías".
+
+Todo en Java deben ser por Getters y Setters.
+
+Implementaremos la librería para escribir y leer en el archivo de reporte. Uno por clase. Se reporta las movies vistas.
+
+Crear validaciones para hacer un reporte solo si se ha visto algo.
+
+Se agrega como ReportToDay.
+
+Para generar las fechas en Java
+
+```
+public static void makeReport(Date date){
+  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+  String dateString = df.format(date);
+  Report report = new Report();
+  report.setNameFile("reporte"+ dateString);
+
+  // Colocar aquí el llenado de todos.
+
+}
+```
