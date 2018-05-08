@@ -119,3 +119,28 @@ Ctrl+shift+l -> Quitar todos los filtros.
 Ctrl+Shift+flecha -> Seleccionamos el rango de celdas llegas. (Para saber cantidad).
 
 Desde la opción de filtros podemos ordenar. Con el orden personalizado podemos agregar niveles para aplicar orden.
+
+# Separa texto y después júntalo
+
+Esto para transformar la información respecto a cómo nos llega para 
+ usarlo en lo que nos interesa.
+
+> Para insertar una fórmula puede ser con **=** o con **+**.
+
+Para juntar el texto de dos celdas: **=C1&C2** Para insertar espacions: **=C1&" "&C2**. Otra opción es **+CONCATENAR(C1;" ";C3)**.
+
+Separar texto en columnas fija:
+- Seleccionar el rango: Ctrl+Shift+teclaAbajo -> Datos -> Texto en Columnas -> Ancho Fijo (Definir en qué punto se separan las palabras)
+
+> Elimnar toda una columna: Ctrl+BarraEspaciadora Ctrl+- Para seleccionar y eliminar la columna.
+
+Separar texto en columna delimiata:
+- Misma ruta de columna fija y especificar el caracter en el que se va a separar.
+
+# Fórmulas básicas
+
+- SUMA -> Suma un rango.
+- PROMEDIO -> Obtiene un promedio de un rango.
+- REDONDEAR(celda;cantidadDecimales) -> Redondea un número.
+
+Podemos buscar y reemplazar.
