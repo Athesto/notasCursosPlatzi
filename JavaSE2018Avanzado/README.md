@@ -47,7 +47,24 @@ class Triangulo extends Figura {
 
 # Implementando clases abstractas al proyecto
 
+Podemos reducir bastante código implementando en ello.
+
+Hay algo repetitivo: Podemos visualizar películas, series, capítulos y libros.
+
+Las revistas solo se muestran como catálogo.
+
+Podemos colocar a Film como una clase abstracta y a view() como un método abstracto y será obligatorio utilizalo. En la clase Book agregaremos el método.
+
+Editamos la clase Film.
+
+> Los métodos abstractos deben ser públicos.
+
+
 # Imlementando métodos abstractos en Java
+
+Aquí veremos polimorfismo en clases.
+
+Terminar de aplicar la clase.
 
 # Qué es JavaDocs
 
@@ -77,4 +94,5 @@ returns, throws, see, other tags]
 * [see also]
 */
 ```
+
 
