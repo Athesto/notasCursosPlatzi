@@ -151,3 +151,149 @@ Atributos de calidad de stand-up:
 - Mantenibilidad (Modularidad, Capacidad de prueba, Capacidad de modificación): El crecimiento de la compañía hace difícil la transmisión de conocimiento y a productividad de nuestros equipos de desarrollo. **Cuanto más seamos, más tenemos que tener capacidad de prueba para garantizar de que ningún cambio rompa funcionalidades anteriores**
 - Confiabilidad (Tolerancia a fallos, Capacidad de recuperación): Pérdida parcial o total de datos por fallas no previstas. **Demostrar que no perdemos ni parcial ni totalmente los datos de nuestros clientes**
 
+# Patrones: Monolíticos vs Distribuidos
+
+Los monolíticos se despiegan con una misma unidad.
+Distribuidos -> Cada módulo se despliega de forma independiente. Donde cada uno es uno monolítico.
+
+**Gran Bola de Lodo/Big Ball of Mud** -> Cuando no hay una arquitectura definitiva, cuando no se toma los criterios de arquitectura y es todo un caos. Para solucionarlo, hay que modularizar.
+
+Cuando las empresas triunfan teniendo una bola de nieve, tienen que ivertir mucho dinero en modularizar para ofrecer un mejor servicio.
+
+# Patrones: Modelo Vista Controlador
+
+Separa a nuestra aplicación en la vista, el modelo y el controlador (acciones del usuario). Tenemos que hacer que la vista cambie sin que el modelo lo haga y que el usuario tenga la misma vista.
+
+Lo importante de esto es separar, estas tres responsabilidades.
+
+El punto es separar la vista del modelo y las acciones del usuario.
+
+- Modelo vista modelo-de-vista / Model View ViewModel -> Se ve mucho en aplicaciones C# y .Net.
+- Modelo Vista Presentador / Model View Presenter -> Hay un coordinador de la vista.
+- Flux / Flux -> Es una separación entre las acciones del usuario, el modelo y las vistas representadas por el componente de react.
+
+Ejemplo modelo vista controlador en web:
+- El usuario accede con una url al router.
+- El router toma la acción del usuario y lo pasa al controler.
+- El controler lo entrega al modelo quien tiene acceso a una base de datos y le responde al controlador y éste le responde a la vista.
+
+Hay variaciones del modelo MVC tiene muchas variantes entre las comunicaciones.
+
+# Patrones: Capas
+
+Nos plantea una separación en capas donde cada una va a ser responsable de cierto concepto de la aplicación.
+
+Ejemplo:
+Aplicación -> Controler 
+Dominio -> Service -> Entity
+Datos -> Repository
+
+De esta forma, el repository no necesita saber del usuario que está consumiendo el controler ni del dominio mismo. Sino que va a encargarse del acceso a datos.
+
+La comunicación debe ir de arriba hacia abajo.
+
+Con esta arquitectura tiene muchas facilidades de mantenibilidad.
+
+# Patrones: Orientado a eventos / Event-Driven
+
+Trata de conectar entre componentes a través de eventos con su bus de eventos.
+
+Todos los eventos están suscritos a un bus de eventos que reacciona al evento dentro del bus de eventos.
+
+Se utiliza en aplicaciones orientados a servicios.
+
+Ejemplo:
+- API de ingreso de eventos: Consumidora y productora de eventos. Cada vez que le hagan un pedido de lectura va a publicar un evento de que algo se quiere escribir como un ingreso de datos que luego un módulo de ventas o clientes podría consumir.
+- Procesos de importación: Está leyendo un archivo muy largo podría estar publicando en ese archivo a modo de eventos y que cada uno de los servicios vaya consumiéndolo si es que está suscrito a ese evento.
+- Módulo de ventas.
+- Módulo de reportes.
+- Módulo de clientes.
+
+El problema con esta arquitectura es que es un poco complejo de testear ya que debemos tener en funcionamiento todos los componentes involucrados en el bus de eventos.
+
+Provisión de Eventos / EventSourcing: Guardar los eventos de forma secuencial en el log y de esta forma podemos saber el estado del evento. Muy bueno para encontrar fallas y secuencias de ataques. Tiene como desafíos que a medida que acumulamos eventos la lectura del log va a ser más difícil. Una solución a ello es crear vistas del estado actual, reportes, ect. Un ejemplo de ello es una secuencia de transacciones bancarias.
+
+> Tener en cuenta que todos los patrones de arquitectura tienen ventajas y desventajas. Si conocemos los patrones podemos escoger el que mejor se adapte.
+
+# Patrones: Microkernel - Plug-ins
+
+Trata de tener un kernel/Core y puntos de conección llamados Plug-in. Puede verse monolítico al deplegar con todos sus plug-in o bien cambiarlos en tiempo de ejecución y verse como un tipo de aplicación distribuido.
+
+Ejemplo son los IDE y sus Plug-in.
+
+# Patrones: Comparte-nada / Shared-Nothing
+
+Compartir recursos entre componentes agrega complejidad a la hora de decidir qué componente tiene disponibilidad de ese recurso.
+
+Esta arquitectura se utiliza para no compartir nada, sin un punto de unión entre componentes. De tal forma que cada componente tenga sus datos privados o bien su propia base de datos para su funcionamiento.
+
+Un ejemplo es el proceso de MapReduce. En el cual trabajamos con un volumen muy grande de datos y para ello lo particionamos en partes (A-I, J-O, P-Z) de forma que decidamos cómo atacar esos datos en forma agrupada y secuencial. De esta forma no necesita compartir datos entre componentes.
+
+Es un patrón muy puntual.
+
+# Patrones: CQRS
+
+Separación de Responsabilidades entre Consultas y Comandos / CQRS
+
+Separa las consultas de los comandos para diferenciar el momento en el que estamos escribiendo con el que estamos leyendo.
+
+Con esta arquitectura podemos separar modelos de escritura y lectura con sus respectivas bases de datos.
+
+Un caso de uso muy común es el de los reportes. Este patrón fue invitado para reportes. Otro caso de es el de los eventos.
+
+Tienen un costo alto al tener dos modelos y dos bases de datos. Usarlo cuando estemos en un caso en el que van a brillar.
+
+# Patrones: Hexagonal - Puertos y adaptadores
+
+Se utiliza en una aplicación en el que ya tenga claras sus depndencias externas. Esto lo hace definiendo puertos que se comunican con la función y un adaptador http que se comunica con la vista. Es uno de los patrones usados en RestAPI, bases de datos, vistas.
+
+Un ejemplo de ello es una app web. Este tipo de arquitectura es muy poderosa al diseñar un sistema pero a la vez muy compleja porque tenemos que tener bien claros los puntos y no salirnos de ellos.
+
+Un error de diseño es cuando tenemos que leer un archivo de reporte y destruirlo para responderlo en JSON. Por lo que hacen muy complejos y tenemos que ser muy estricto ya que debemos saber qué hacer en cada lugar.
+
+Es recomendable empezar usando una arquitectura simple y luego evolucionarla a una hexagonal.
+
+# Patrones: Diseño orientado al dominio / Domain-driven design
+
+> Lo que hacemos es guiar nuestra aplicación y diseño a través del uso del lenguaje común dentro del negocio.
+
+Centrarse en el concepto de una venta, de un servicio, de un producto. Va más allá de una sola aplicación modularizando la app en contexto limitados que es dónde el lenguaje cambia de sentido.
+
+Se concentra mucho en trabajar con el negocio y el lenguaje que usa. Hay mucho valor en la semántica y la manera en cómo diseñamos a la manera de cómo el negocio piensa.
+
+Cada contexto se comunica entre sí.
+
+Ejemplo en un eCommerce: Ventas - Usuarios - Inventario. 
+
+# Combinando patrones de arquitectura
+
+El cliente con arquitectura en Flux el cual se conecta con el balanceador de carga y éste se conecta a otras con un RestAPI o GraphQL que no se cumican entre sí y están conectadas aun bus de eventos.
+
+Es una arquitectura muy usada en aplicaciones empresariales y aquellas que necesitan escalar.
+
+Otro ejemplo, tenemos un MVC el cual se comunica a una base de datos y ésta  se conecta a otras apps monolíticas de bases de datos y modelo el cual se conecta a otra base de datos para generar lectura de ellos y hacer reportes. Aquí tenemos CQRS.
+
+Otro ejemplo, tenemos un MVC el cual se comunica a una base de datos y ésta  se conecta a otras apps monolíticas de bases de datos y modelo el cual se conecta a otra base de datos para generar lectura de ellos y hacer reportes. Aquí tenemos CQRS.
+
+Ejemplo de una bola de lodo. En vez de ensuciarnos en ella creamos una arquitectura hexagonal con una base de datos compartida que se comunica con la bola de lodo. Entonces el hexagono tiene para entrega en el JSON, luego con un bus de eventos persistentes nos conectamos con la bola de lodo que respalde el log en una base de datos. De esta forma podemos saber qué está pasando en la bola de lodo con el hexagono. En la bola de lodo solo creamos una conexión con el bus de eventos y la base de datos compartidas y de esta forma no nos metemos a modificar tanto el código en la bola de lodo.
+
+# Analizando nuevamente PlatziServicios
+
+Proyecto: Arquitectura y la máquina del tiempo
+
+Etapa Startup:
+- Empezamos con la estructura cliente servidor con el patrón MVC. Monolítico, fácil de desplegar.
+- Otra opción es en capas: Monolítico, fácil de desplegar, buena abstracción del dominio (capa del negocio).
+
+En crecimiento:
+- Se tuvo la necesidad de crear reportes los cuales eran costosos. Se usa arquitectura comparte-nada para el proceso de reportes con sus bases de datos independientes. Distribuído. Buen uso de recursos. Capacidad de procesamiento paralelo. Es muy útil cuando el volumen de datos es muy grandes.
+- Otra opción es basada en eventos. Donde leemos esos eventos y lo pasamos al reporte. Distribuído, buen uso de recursos, capacidad de procesamiento paralelo. 
+- Otra es por microservicios: Sería ambicioso y más complejo. Si somos pocos (menos de 20 programadores) quizás mantener el monolito tiene sus ventajas. Podríamos usar microservicios de prestadores y otro de reportes.
+
+Gran escala: Empresa global con traducciones, husos horarios, etc.
+- Microservicio: En el estado anterior era ambiciosa pero ahora cobra sentido. Servicios de reportes, servicios locales y servicios globales.
+- Otro provisión de eventos: Para provisión interna de reportes. Si se basa en eventos podemos tener una base de datos con los pasos por usuarios.
+- Separación de consultas y comandos: Es una buena utilidad para un sistemas que necesitan servicios. Separamos la escritura y la lectura con eventos separados. Es muy buena para múltiples servicios combinadas entre sí con el bus de eventos. Monolítico, mejora la modularidad y se integra bien con la provisión de eventos.
+
+
+
