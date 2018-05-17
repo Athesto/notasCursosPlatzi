@@ -295,5 +295,255 @@ Gran escala: Empresa global con traducciones, husos horarios, etc.
 - Otro provisión de eventos: Para provisión interna de reportes. Si se basa en eventos podemos tener una base de datos con los pasos por usuarios.
 - Separación de consultas y comandos: Es una buena utilidad para un sistemas que necesitan servicios. Separamos la escritura y la lectura con eventos separados. Es muy buena para múltiples servicios combinadas entre sí con el bus de eventos. Monolítico, mejora la modularidad y se integra bien con la provisión de eventos.
 
+# Conectores: Llamando asíncrono - sincrónico: Modelo Cliente Servidor
 
+LLamado asincrónico -> Un emisor llama a un receptor pero no espera a que termine esa ejecución sino que simplemente sigue con su trabajo y en algún momento evaluará el resultado de esa ejecución.
+
+Llamado sincróonico -> El emisor envía un mensaje al receptor y espera que éste le responda. Normalmente se utiliza hilos.
+
+Cliente/Servidor -> Es la comunicación entre cliente servidor no trata tanto de asíncrono o síncrono sino de la forma en la que va a estar distribuido nuestros componentes que no necesariamente deben convivir en el mismo sistema.
+
+# Conecores: Enrutador, difusor
+
+Enrutador -> Facilita la conexión entre un componente que emite un mensaje y un set de componentes que le interese ese mensaje.
+
+Difusión -> Dado un mensaje lo difunde a múltiples componentes interesados.
+
+Ejemplo: Twitter -> Al escribir un tweet se publica en el TimeLine y notifica a usuarios interesados del mismo modo en el TimeLine que aparece en diversos perfiles.
+
+Entonces el detalle es si el componente es inteligente para emitir un mensaje o bien si conector es inteligente para saber a quién enviar ese mensaje.
+
+# Conectores: Pizarra, repositorio, colas, modelo PUBSUB
+
+Cola -> Cuando un productor que tiene mucha más velocidad que un consumidor, entonces para conectarlo necesitamos compatibilizar esa conexión. Entonces el consumidor irá leyendo en la medida que su velocidad se lo permita. Ejemplo: Un fichero en memoria y luego tenemos que comunicar algo.
+
+Repositorio/Pizarra -> Es un conector que está orientado a escribir o leer datos de un componente que funciona como bases de datos con su lectura y escritura. Un ejemplo de ello son los driver de las bases de datos relacionales garantizándonos que la transacción va a ser atómica.
+
+Publicar/Suscribir -> Manda mensajes desde un componente que publica eventos en un bus a otro que se suscriba en un bus de eventos sin que necesariamente se comunican entre sí. Este conector es súper importante en aplicaciones o servicios distribuidos que no les interesan la fuente de los mismos.
+
+# Escenarios y tácticas
+
+Escenario: Atributo de calidad X
+
+Estímulo -> Táctica para controlar la respuesta -> Respuesta
+
+# Escenarios: Disponibilidad, detección, reparación, reintroducción y prevención.
+
+Siguiendo el mismo esquema anterior
+
+Falla (estímulo) -> Tácticas para controlar la disponibilidad -> Falla ocultada o sistema reparado.
+
+Disponibilidad:
+- Detección: Detectar si perdimos disponibilidad o detectar si hubo alguna actividad que está sucediendo en nuestro sistema que está comprometiendo nuestra disponibilidad.
+  - Ping/Eco: Cómo un componente manda un mensaje genérico para saber si el componente está disponible o no.
+  - Latido: Un componente emite un mensaje periódicamente para dar señales de que está disponible, por lo cual si no tenemos ese mensaje en una cierta cantidad de tiempo sabremos que no está disponible. Es muy típico en apps que no tiene interfáz gráfica como notificaiones push.
+  - Excepciones: Nos ayuda a darnos cuenta de cúando estuvo comprometida la disponibilidad y por qué.
+
+- Recuperación Preparar/Reparar: Cómo saber si estar listo para que cuando la falla ocurra repararla lo más rápido posible. Ya sea que el problema lo repare un operador o pueda repararse solo.
+  - Votación: Tenemos múltiples componentes con la misma funcionalidad que podemos reemplazar uno u otro componente de forma arbitraria que no responda igual que el resto.
+  - Redundancia activa: Garantiza que todos los mensajes de entrada llegue a todos los componentes del cluster. De tal forma que vuelva estar disponible en cuestión de milisegundos. Teniendo un componente líder que al caer vendrá otro que lo reemplace.
+  - Redundancia pasiva: La comunicación se hace a un componente y éste se encarga de sincronizar a otros componentes que están de forma pasivas a estos cambios. Muy usada en una base de datos líder y otra seguidora.
+  - Repuesto: Cuando algo falle, tendremos una arquitectura en el caso de que la principal se cae. Se requiere inicializar.
+
+- Recuperación: Reintroducción -> Cómo hacer que con una falla de disponibilidad vuelva a estar disponible.
+  - Modo sombra: Un component empieza a fallar lo quitamos del cluster productivo, lo reparamos y volvemos a introducir.
+  - Sincronizaciónn de Estado: El componente no se comporta correctamente, entonces lo quitamos y lo reemplazamos.
+  - Punto de control/Retroceso: Marcar estados de la aplicación en un estado en el que sabemos que esta en un estado consistente. Revisando los logs podemos saber qué correcciones aplicar para implementar la funcionalidad.  
+
+- Prevención: Qué podemos hacer para prevenir la falla de disponibilidad.
+  - Quitar de servicio: Quitar un componente que no estaremos reparando para prevenir que genere otro problema. Ejemplo cuando sabemos que la aplicació está consumiendo memoria.
+  - Transacciones: Controlar el bloque de cambios para hacerlos todos juntos o quitarlos todos juntos para evitar que no sean inconsistentees.
+  - Monitoreo de procesos: Pueden ser automáticos y nos ayudan a que nuestra app siga estando disponible por más que un proceso se siga comportando de forma anómala.
+
+# Escenarios: Mantenibilidad, prevenir efectos dominó y diferir enlace
+
+Período de cambio (nuevo requerimiento) -> Tácticas para controlar la mantenibilidad -> Cambio hecho, probado y desplegado.
+
+Mantenibilidad:
+- Confinar modificaciones: Las tácticas van a intentar trabajar sobre nuestros módulos para que cada cambio esté confinando al módulo. De esta forma, el cambio que nos proponen no afectan a muchas partes del sistema.
+  - Coherencia semántica: Relación entre las responsabilidades de los módulos. Si logramos obtener cohesión (relación entre sí) podemos hacer que ese módulo sea más mantenible, de otra forma, si no es cohesivo (no tienen tanta relación entre sí). Entonces va a ser menos mantenibles.
+    - Abstraer servicios comunes: Cuando tenemos login, etc. Podemos hacerlos un servicios externos en un componente separado.
+  - Generalizar: Podemos separar lo específico de lo genérico. Nos permite tener eso ya más estable. Podemos tener un sistema más estable y la mantenibilidad del sistema va a mejorar.
+  - Limitar opciones: Si un cambio requiere modificar una parte del sistema y hacer que se comporte de otra forma, quizás sea radicalmente diferente que la anterior. Por lo cual podemos limitar ciertos cambios para hacerlos más mantenibles. Ejemplo que las plataformas de pago, mantener el mismo API e interfaz.
+  - Anticipar cambios: Si sabemos que en próximas iteraciones van a eexistir cambios, podemos preparnos para ello. No tanto el código sino ya tener una estructura pensada. Pudiendo usando el patrón estrategia.
+
+
+- Prevenir efectos dominó: Trabaja con las dependencias. Para evitar que un cambio afecte a otros módulos. Haciendo que muchas otras partes necesiten cambiar.
+  - Ocultar información: Cualquier módulo tenga la capacidad de ocultar cierta parte de la información sino que su método de acceso sea a través de una interfaz. De tal forma que si el componente cambión pero no la interfaz, no se verá afectado.
+  - Mantener la interfaz: Si tengo un servicio hace algo, debemos establecer una interfaz. Si la semántica cambia también es necesario cambiar el módulo como agregar un nuevo paso, ejemplo que la autenticación ya no sea por usuario y contraseña sino con OAuth.
+  - Restringir comunicación: Es una cadena de conocer variables y atributos de las dependencias de las dependencias de las dependecias. Por lo cual es importante restringir ciertos atributos de los objetos. 
+
+> Ley de Dimiter, el principio de menor conocimiento. "Para generar sistemas que estén acoplados de forma ligera, en vez de conocer las dependencias de tus dependencias siempre te limites a hablar con tus dependencias directas. De esta forma, cualquier cambio en la que tus dependencias trabajan no afecte el módulo en el que estás trabajando".
+
+  - Intermediarios: Es un punto donde se compatibilizan un módulo con otro y cuando ya no sean compatibles se utilizan un intermediario para generar compatibilidad como los adaptadores, Pub/sub, etc. De tal forma que si algo cambia, solo sea necesario cambiar el conector.
+
+  
+
+- Diferir enlaces: Cómo podemos hacer para que un cambio en nuesto código no implique desplegar todo el sistema.
+ - Registro de ejecución: Cuando dos servicios depende de compilación podrían separarse.
+  - Archivos de configuración: Sirve para en momentos de ejecución cómo conectar diversas partes. El ejemplo más claro es la arquitectura del tipo Plug-in.
+  - Polimorfismo: Podemos postergar la forma en cómo se resuelve un problema. Donde dependiendo del estado actual del objeto va a recibir una instancia específica de ese estado que se va a encargar de todo su comportamiento.
+  - Reemplazo de componentes: Capacidad desplegar un componente y luego una actualización que no afecte el resto de los componentes.
+  - Adherir a protocolos: Tener un protocolo claro entre dos módulos como interfaces o esquemas, puede ser tipo JSON. Que estén adheridos al mismo protocolo que no cambió por más que ellos cambiaron.
+
+
+# Escenarios: Eficiencia de ejecución
+
+Eventos -> Tácticas para controar eficiencia -> Respuesta dentro del tiempo esperado.
+
+Eficiencia de ejecución:
+- Demanda de recursos: Cuando entra un evento cómo hacemos para que ese evento tenga los recursos disponibles y cuánto de esos recursos necesita.
+  - Mejorar la eficiencia computacional: Analizar los algoritmos para encontrar los puntos donde no estamos eficiente. Se encuentran las eficiencias computacionales. Un ejemplo es que no tengamos que recorrer listas de listas.
+  - Reducir sobrecarga: Cuántos pasos qué acciones estamos tomando para responder un mismo evento. Si podemos predecir podemos aliviar la carga del evento.
+  - Manejar tasa de eventos: Cuántos eventos vamos a emitir a un componente específico y si es necesario qué tan fino o granular. Podríamos reducir la cantidad de eventos sumándolos en uno solo en vez de varias emisiones de eventos. Ejemplo un stream de varios datos. Podríamos usar un Buffer.
+  - Frecuencia de muestreo: Tiene que ver con el componente que recibe. Debemos filtrar o agrupar los eventos para ejecutarlos a la vez cada cierta cantidad de tiempo en una tarea única. Procesando una vez varios eventos. Como los reportes cada 5 minutos.
+
+- Gestión de recursos: Cómo ponemos más o menos recursos y cómo hacer para que esten disponibles en el momento que se necesiten.
+  - Concurrencia: Cómo paralelizar recursos para particionar datos. Muy utilizado en DataScience.
+  - Réplicas: Cómo podemos duplicar el procesamiento o los datos para hacer más accesible los recursos. Un ejemplo de esto es guardarlo en la caché en memoria del servidor.
+  - Aumentar recursos: El poder medir y saber cuánto crecer en la medida que necesitamos como el disparo de nuevas instancias.
+
+- Arbitraje de recursos: En caso de conflictos, donde diversos componentes quieran acceder a los mismos recursos cómo decidir quién tiene más prioridad.
+  - Políticas de planificación de tareas: Podemos hacerlos asíncronos en el momento o colocarlos en una cola, decidir los pedidos y cuál es el más prioritario.
+
+> Es muy importante creer en la ingeniería que la eficiencia de ejecución es muy prioritario siempre, sin embargo, hay que tener criterio porque hay muchos atributos que se van a ver afectados por priorizar la eficiencia.
+
+# Escenarios: Seguridad
+
+Ataque -> Tácticas para controlar la seguridad -> Detección, resistencia o recuperación (en caso de no poder resistirlo)
+
+Seguridad:
+- Detectar ataques: Verificar que en el estado actual de la app tiene un atacante de por medio como sensores o usos de la aplicación diferente a la habitual.
+  - Detectores de intrusos: Diferentes implementaciones en la aplicación como tráficos de red, secuencia de acciones, etc. Para detectar que no se está usando nuestra App de forma correcta y crear alertas que nos permitan tomar acciones. Pueden ser complejas como automatizdas  o simples como redes que se pueden conectar a nuestra App. En la medida que avancemos iremos más profundo.
+
+- Recuperación de ataques: Diferentes tácticas para volver a un estado consistentes y saber las acciones que el usuario tomó para poder evitarlas.
+  - Restauración: Toda la estrategia de disponibilidad en un estado que sabemos que es consistente y volver a él.
+  - Identificación: Saber qué fue lo que hizo el atacante. Para ello tener un log de todos los pasos que han hecho los usuarios e ignorar los del atacante para volver al estado estable.
+
+- Resistencia al ataque: Es la más compleja, va a tratar de que el atacante no tenga éxito. Es muy común en apps web.
+  - Autenticación: Para saber que los usuarios es quien dice ser. Como usuario contraseña, OAuth, datos biométricos.
+  - Autorización: Saber quién es la persona y qué puede hacer esa persona. Esto definido por roles.
+  - Confidencialidad de datos: Cómo garantizamos que el dato lo puede ver solo quien debe verlo. Para ello encriptamos la información.
+  - Integridad de datos: Que el dato sea íntegramente igual al del emisor. Tiene encriptación y hash.
+  - Limitar exposición: En el que si un atacante entra por algún medio no pueda acceder a información sensible. Esto se puede hacer separando la información sensible de aquella que no es tan importante.
+  - Limitar acceso: Verificar todos los vectores de acceso y limitarlos a la menor cantidad posible. Los servidores web tienen múltiples puertos como 80 y 443. Sin embargo el puerto ssh no necesariamente debe estar disponible a todos los usuarios. Podríamos usar un servidor de acceso remoto. Recuerda que en el curso de Azure vimos cómo separar la instancia de la base de datos y que ésta no tenía conección a internet sino en una red privada.
+
+Estos son ejemplos para mejorar la seguridad. Pero es importante consultar a un experto de seguridad informática o formarse en ella cuando la seguridad es muy importante.
+
+# Escenario: Capacidad de pruebas
+
+Funcionalidad -> Tácticas para controlar la capacidad de prueba -> Fallas detectadas
+
+Capadidad de prueba:
+- Entradas y salidas: Saber en cómo dadas unas entradas emitir una saida.
+  - Captura y reproducción: En un escenario de comunicación capturarla y usarlo en un test de prueba. Se usa como librerías VCR.
+  - Separar interfaz de implementación: Podemos hacer pruebas con una implementación contolada y saber si tiene las respuesta. Se le llama sprites o mock. Muchos frameworks tienen una facilidad para usar mocks.
+  - Acceso exclusivo para pruebas: Cómo hacer cuando tenemos una funcionalidad que solo podemos probarla desde fuera de la aplicación. Por lo cual tenemos que usar código externo que debemos evitar que llegue al entorno de producción. Es muy usada en microservicios en APIs. Para ello creamos acceso específicos controlando las partes dependientes al servicio.
+
+- Monitoreo interno: La ejecución de la aplicación y cómo probar que se está ejecutando correctamente.
+  - Monitoreo incorporado: Monitorizar recursos de la aplicación.
+
+Todo esto se ve afectado por la mantenibilidad. Una buena mantenibilidad de código va a ayudar a tener una mejor capadidad de prueba.
+
+# Escenarios: Usabilidad
+
+Pedido de un usuario -> Tácticas para controlar la usabilidad -> Información y asistena adecuada al usuario.
+
+Usabilidad:
+- Separar la interfaz de usuario: Cualquier módulo esté separado de la interfaz del usuario. Independientemente de la lógica del usuario. Mantenibilidad: Coherencia semántica.
+
+- Iniciativas del usuario: Para que el usuario tenga mejor control de lo que está pasando o pueda mejorar en sus operaciones.
+  - Cancelar: Dada una acción de usuario el poder arrepentirse, el poder decir "no hagas esto". Entonces cualquier proceso que tenga un tiempo determinado de ejecución pueda ser cancelado lo cual implica hacer que la interfaz soporte esta interacción. Hay procesos que al ser muy rápido no tienen la opción a cancelarse.
+  - Deshacer: Para que el usuario pueda volver a un paso anterior cuando sucedió algo que no le parece al usuario. Es muy común en en Android y Desktop. En web es poco común pero algo sencillo de implementar en aplicaciones reactivas como React o VueJS que tienen cambios de estado.
+  - Agregación: Entender cuando las funcionalidades debería estar agrupadas. Como repetir un grupo de acciones ya realizadas para implementar repetitividad y así agilizar su trabajo.
+  - Múltiples vistas: Que el usuario tenga solo las vistas necesarias para que pueda ejecutar solo las acciones de la forma más eficiente posible. En cada cierto momento presentar la misma información pero de forma diferente, para que la vista esté optimizada en base a las accciones a ejecutar. 
+
+- Iniciativas del sistema: La ideaes entender del lado del sistema el estado actual de la aplicación.
+  - Modelado del usuario: Saber el estado actual del usuario para enviarle una notificación de acuerdo a su estado desde el lado del sistema para darle feedback en su estado actual como conocer que sigue viendo un formulario para dare feedback de cualquier eventualidad. El sistema necesita saber lo que está haciendo el usuario y saber si la información que le queremos dar es pertinente al momento.
+  - Modelo del sistema: Qué sabemos de nosotros de lo que está pasando e nuestra App, para brindarle información de lo que está sucediendo. Muy usuado en carga de datos. Ejemplo si lo hacemos de forma asíncrona podemos notificarle al usuario lo que se ha cargado, errores en cciertas líneas, etc. El estado del sistema es que tiene un proceso de ejecución.
+  - Modelo de la tarea: Es con cuánto entiende el sistema de la tarea que está queriendo resolver el usuario. Como por ejemplo el modelo de una compra para saber cómo ayudar al usuario para que sea exitoso en esa tarea específica.
+
+
+# Validar las decisiones de diseño: Arquitectura en evelución
+
+En tradicional se evalúa la arquitectura en momento del diseño mientras que en Agile se realizan en cada iteración.
+
+Hay una metodología para el diseño de la arquitectura llamado ATAM.
+
+Todas las decisiones que tomamos debemos usar métricas para saber qué está pasando y poder sabe cuán bien o mal estamos al respecto. Podemos implementar pruebas automatizadas para que se comunique con un umbral y pueda disparar una alerta.
+
+En nuestro Backlog debemos saber qué priorizar y qué no. En cada iteración detectar qué se puede mejorar para un feedback con la ayuda de métricas y alertas automatizadas.
+
+De esta forma podemos saber dónde nuestra arquitectura no está cumpliendo las expectativas y tomar acciones para mejorarla.
+
+# Último análisis a PlatziServicios
+
+Confiabilidad: Madurez, Disponibilidad
+- Latido: Mensaje de un componente para avisar que está disponible.
+- Excepciones: Saber un error.
+- Transacciones: Atomicidad en bases de datos.
+- Redundancia pasiva: Para asegurarnos la disponibilidad.
+
+Seguridad: Autenticidad, confidencialidad
+- Autenticación: Permitir al usuario otorgar información de usuarios.
+- Confidenciaidad de datos: Encriptar y proteger información de los clientes para que solo le lleguen a los prestadores.
+- Restauración: Podamos recuperarnos de ataques.
+
+### Diseño de una arquitectura: En crecimiento
+
+Eficiencia de ejcución: Uso de recursos, Capacidad
+- Frecuencia de muestreo: Controlar el uso de recursos .
+- Manejar la tasa de eventos: Limitar la entrada de eventos.
+- Concurrencia: Servirá mucho para el cálculo de los reportes.
+- Réplicas: Nos ayudará para la capacidad y poder soportar más pedidos en paraleo.
+
+Compatibilidad: Interoperabilidad
+- Separar interfaz de implementación: Para evitar que todo nuestro código esté acoplado a una interfaz. Y cualquier otra app externa pueda acceder a nuestra API común.
+- Implementar estándares: Implementando estándares como APIRest o bien GraphQL.
+- Documentar: Es importante.
+- Ocultar información: Para no generar futuros acoplamientos.
+
+Seguridad: Comprobación de hehos, traza de responsabilidad, confidencialidad.
+- Traza de auditoría: Saber qué pasó y quién fue el que lo ejecutó.
+- Limitar accesos: Ayuda a que estas cosas no pasen. 
+- Autorización: De tal forma definir quién tiene acceso a qué.
+- Detección de intrusos: Empezar a ser proactivos y desde nuestro lado cuándo alguien entró a nuestro sistema de forma no autorizada.
+
+### Diseño de una arquitectura a gran escala
+
+Usabilidad: Accesbilidad, reconocimiento de idoneidad, Operabilidad.
+- Separar interfaz de usuario: Separa qué es lo que se ve con lo que se hace.
+- Modelo de usuario: Nos ayudan con la accesbilidad.
+- Modelo de tarea: Nos ayudan con la accesbilidad.
+- Múltiples vistas: Para saber qué usuario está accediendo a la información y quén necesita ver.
+
+Mantenibilidad: Modularidad, capacidad de prueba, capacidad de modificación.
+- Abstraer servicios comunes: Detectar código común y abstraerlo a un servicio.
+- Restringir la comunicación: Restringir qué parte se comunica con otra nos va a ayudar a crear en equipos más independientes ya sea en el software como en la organización del equipo.
+- Intermediarios: Compatibilizar la comunicación entre dos módulos. 
+- Adherir protocolos: Ayuda a la mantenibilidad del sistema.
+
+Confiabilidad: Tolerancia a fallos, capacidad de recuperación. "Poder soportar errores que ya en esta etapa no están permitidos".
+- Punto de controlo/retroceso
+- Sincronización de estado
+- Monitoreo de procesos
+
+# Cómo comunicar la arquitectura: Vistas y puntos de vistas
+
+"Esencialmente, todo modelo es incorrecto. Pero algunos son útiles" -> George Box
+
+# Documentación vs implementación
+
+Al momento de implementar la arquitectura al momento de código pueden existor diferencias.
+
+La fuente de la verdad va a ser el código y no el documento de arquitectura.
+
+
+Técnicas para solventar diferencias:
+- Ignorar divergencias
+- Modelo ad hoc
+- Solo modelos de alto nivel
+- Sincronización en hitos del ciclo de vida
+- Sincronización en crisis (cuando las cosas no están funcionando)
+- Sincronización constante (es lo menos eficiente)
 
