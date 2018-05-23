@@ -143,4 +143,138 @@ Separar texto en columna delimiata:
 - PROMEDIO -> Obtiene un promedio de un rango.
 - REDONDEAR(celda;cantidadDecimales) -> Redondea un número.
 
-Podemos buscar y reemplazar.
+Podemos buscar y reemplazar con las opciones de Buscar.
+
+# Fórmulas de texto
+
++MAYUSC(celda) -> Convierte a mayúscula
++MiNUSC(celda) -> Convierte a minúscula
+
+> Excel reconoce la fecha como por ejemplo "24 dic"
+
++HOY() -> Imprime la fecha de hoy
+
+> Si restamos dos fechas optenemos la diferencia en días.
+
+# Sumar.si y Promedio.si
+
+Esto es aplicando una condición.
+
+"Encontrar una fórmula que sume toda la inversión hecha en el sector tecnología en el 2018"
++sumar.si(rangoCelda;criterioItem;rangoCelda) -> Ejemplo +sumar.si(RangoDeCeldaSector;sectorTecnología;rangoCeldaInversion2018)
+
+> Presionando F4 podemos fijar celdas.
+
+"Contar pesonas de las diferentes modalidades y porcentaje de cada uno"
++contar.si(rango;Criterio) Ejemplo -> +contar.si(RangoIntenciónProyectos;trabajo)
+
++contar -> Cuenta el número de celdas que contienen números en un rango determinado.
++contarA -> Cuenta el número de celdas no vacía en un rango determinado.
+
++promedio(celda1,celda2,celda3...)
+
+"¿Cuál es la calificación promedio de los proyectos de acuerdo a cada uno de los sectores?"
++promedio.si(rango;criterio;rango) -> Ejemplo +promedio.si(rangoSector;tecnología;rangoProyectos)
+
+# Nombra rangos y haz operaciones 
+
+En el ejemplo restamos dos sumar.si la primera inversión esperada y la otra inversión realmente invertida. En una misma celda
++sumar.si(rango;criterio;rango) -> Ejemplo +sumar.si(sector;tecnología;rangoExpectativa2018)
+
+> Recuerda que el nombre de un rango se colocan en la esquina superior izquierda.
+
+Si le damos un nombre a un rango podemos colocar dentro de la fórmula. Que será constante.
+
+# Promedio ponderado y fijación de datos
+
+Promedio ponderado son porcentajes dentro de los porcentajes como las calificaciones.
+
+"¿Cuál es la calificación promedio? Teniendo en cuenta que la feria tiene una ponderación del 70% y la del proyecto un 30%"
++(feria*70%)+(proyectos*70%)
+
+Podemos hacer lo mismo con la función sumaproducto(rangoPesoPorcentual,rangoCantidad)
+
+F4 (1 vez)  -> Fija el rango
+F4 (3 veces, pesos antes de las letras) -> Fijamos las columnas
+F4 (2 veces, pesos antes de los números) -> Fijamos las filas
+
+Podemos crear un hipervínculo colocando un contenido en una celda, clic contrario en hipervínculo y especificar una celda.
+
+
+# Pegado especial
+
+La opción aparace en Pegar -> Pegado especial
+
+Podemos definir si queremos pegar el valor, fórmula, estilo de la celda, etc.
+
+Atajo -> Ctrl+Alt+v
+
+> Si cortamos, las fórmulas que están dentro de la celda también se corta.
+
+Transponer: Las filas pasan a ser las columnas y las columnas pasan a ser filas.
+
+# ¿Qué es BuscarV?
+
+# BuscarV aplicado
+
+Permite traer información de otras hojas o bien en archivos externos.
+
+> Es una especie de una celda inteligente donde busca información según un dato de entrada.
+
+Es importante que el valor buscado esté dentro de la primera columna de la matriz.
+
+Fórmula -> BUSCARV(valorBuscado, matrizValorBuscadoYResultado,indicadorDeColumnaDeValor,FALSO(coincidenciaExacta))
+
+|Gerente | Ventas|
+|-----|-----|
+|Juan     |+BUSCARV(celdaIzquierda,rangoTabla,columnaValor,falso)|
+
+De tal forma si cambia el nombre del gerente se muestra el valor.
+
+SI.ERROR -> Forma de mostrar un error -> +SI.ERROR(valorOK,valorError)
+
++SI.ERROR(fórmulaBuscarV,"") // Las comillas dejarán la celda vacía.
+
+# Ahora ¿qué es BuscarH?
+
+BuscarV es buscar vertical y BuscarH es buscar horizontal.
+
+BuscarV -> Indicador es columnans.
+BuscarH -> Indicador es filas.
+
+# Practica el BuscarH
+
+Se utiliza de forma similar a BuscarV pero diferenciando en que se usan filas en vez de columnas.
+
+Combinamos BuscarV con BuscarH para poder modificar dos indicadores. El BuscarV se utiliza para el obtener el indicador.
+
+|   |Enero|Febrero|Marzo|  |
+|---|-----|--------|----|--|
+|Ventas  |#|#|#|2|
+|Costos  |#|#|#|3|
+|Utilidad|#|#|#|4|
+
+|Gerente|Item(Ventas, Costos, Utilidad)|
+|-------|------|
+|Mes    |celdaBuscar|
+
++BUSCARH(celdaMes,rangoMesesYValores,BUSCARV(item,rangoGerenteANumerosSinMeses,columnaNumeros,falso),falso)
+
+
+Enlazando el BuscarV con el BuscarH podemos tener una fórmula muy interesante para buscar en toda la matriz.
+
+# Fórmulas condicionales ¿qué son?
+
+Es lo mismo que una sentencia condicional if/else
+
++SI(condición,Si-Si,Si-No)
+
++SI(C5="J","Platzi","Rojo")
+
+Excel va a leer las fórmulas de izquierda a derecha.
+
++SI(C18=2,"Platzi",SI(C18="K","Platzi", "Rojo"))
+
+Se pueden manejar ">" en Excel.
+
+
