@@ -368,4 +368,51 @@ Hay un truco para resolver problemas con números grandes.
 
 Aquí hay un reto interesante.
 
+# Macros: Escribiendo y entendiendo código
 
+Las Macros se pueden hacer de dos formas:
+- Escribiendo código
+- Grabando la macro y modificando código
+
+En windows presionar **Alt+F11** para abrir Visual Basic.
+
+Sub nombreMacro() // Abre macro
+End Sub // Finaliza Macro
+
+F8 permite ejecutar la Macro paso por paso, con Play las lee toda.
+
+Para setear una celda -> ActiveCell.value = 2
+
+Workseets("Hoja2").Activate // Entrar en la "Hoja2"
+ActivateSheet.Range("d5").Value = "Hoja que tal?" // En la hoja activa, en la celda "d5" ingrese un valor igual a "Hola qu tal?"
+ActivateSheet.Range("d5").Font.Bold = True // En la hoja que está activa, en la celda "d5" usar negritas.
+ActivateSheet.Range("d5").Font.Color = RGB(255,0,0) // En la celda "d5" utilizar el color RGB asignado
+
+// Otra forma de escribir el código
+With ActivateSheet.Range("a7")
+.Value = "Pepe"
+.Font.Bold = True
+.Font.Color = RGB(0,255,0)
+End With
+
+# Macros: Grabando macros
+
+Si no está habilitada la pestaña de desarrollador -> Clic derecho en la barra -> Personalizar la cinta de opciones -> Check opción de desarrollador
+
+Para grabar una macro -> Desarrollador -> Grabar una macro // A partir de aquí va a ser grabado
+
+La grabación se detiene en un botón que está en la parte inferior izquierda.
+
+> Es buena idea grabar una macro y luego modificarla.
+
+Para insertar botones -> Desarrollador -> Insertar -> Botón -> Asignar a una macro.
+
+También podemos insertar formas al que le podemos asignar una macro.
+
+Haciendo clic contrario a botones podemos asignar una macro.
+
+Con un botón con Scroll horizontal podemos modificar un valor y con una macro asignada se puede utilizar buscar objetivo cada vez que se mueva el botón.
+
+# Conclusiones
+
+Equivocarse, encontrando errores, corregirlos y practicando mucho es la única forma de aprender.
