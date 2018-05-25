@@ -277,4 +277,95 @@ Excel va a leer las fórmulas de izquierda a derecha.
 
 Se pueden manejar ">" en Excel.
 
+# Fórmulas condicionales indispensables
+
+> Para expandir varias columnas cuyo contenido sobresale de la celda. Seleccionar todas y dar doble clic en el límite de cada una de ellas. 
+
+> Para excel el != es <>
+
+# Formatos condicionales
+
+Esto es para darle color a las celdas en base a una condición.
+
+En inicio -> formato condicional -> Resaltar reglas que... // Aparecen múltiples opciones.
+
+También hay la opción de barras.
+
+Para hacer una regla en todo un rango para un valor límite, usar -> Reglas superiores e inferiores.
+
+# Semáforos, celdas de colores y formulación
+
+Detrás de la celda de un semáforo hay un valor, lo que hacemos es condicionar la celda para que muestre un color tipo semáforo.
+
+Las celdas con comentarios aparecen un triángulo rojo en la esquina superior derecha.
+
+> Crecimiento porcentual=(valorFinal-valorInicial)/valorInicial
+
+Para agregar una flecha al lado del número.
+
+Formato condicional -> Nueva Regla -> Aplicar formato a todas la celdas según sus valores -> Íconos // Seleccionamos el ícono y configuramos los parámetros.
+
+Con la opción "Utilice una fórmula que determine las celdas para aplicar formato" se puede especificar la fórmula dentro de cuadrante.
+
+# Tablas dinámicas
+
+- Permite agilizar movimientos
+- Ayuda a manejar grandes volúmenes de datos
+- Utiliza información general a datos que interesan utilizar
+
+Debemos tener seleccionada toda la tabla, incluyendo los items.
+
+Insertar -> Tabla dinámica 
+
+Arrastaramos los títulos según correspondan. Ya sea que si queramos filas, columnas, valores o filtros.
+
+Para modificar la forma como se procesan los valores (por defecto es sumar) -> Configuración de campo de valor -> Allí seleccionamos el campo de valor.
+
+> En las tablas dinámicas no es tan sencillo formular, de ser necesario, copimos y pegamos solo los datos.
+
+# Tipos de gráficas y sus diferentes usos
+
+Podemos cambiar la orientación de los ejes, en el botón "Cambiar entre filas y columnas".
+
+En la gráficas de torta se utiliza los porcentajes.
+
+En las gráficas de líneas, podemos deschecar ciertos items y modificar otros para que en vez de que aparezcan números se indique el valor del item.
+
+# Gráficas sencillas
+
+> Este más fácil y sencillo muestre las gráficas mejor es. En gráficas las personas se fijarán más en aquello que es más grande y con color que resalta.
+
+# Gráficas dinámicas
+
+- Permite agilizar procedimientos
+- Iterar posibiliades para encontrar patrones
+
+Se hace como las tablas dinámicas con la diferencia que se actualizará un gráfico.
+
+Seleccionamos toda la tabla -> Insertar -> Gráfico dinámico
+
+Cuando agregamos más filas, para configurar la prioridad de uno de los ejes de la gráfica dinámica (si/no) sencillamente modificamos el orden de las filas.
+
+# Formulación con tablas dinámicas
+
+Es posible formular con tablas dinámicas.
+
+Lo que hacemos es crear celdas inteligentes con listas desplegables reemplazando la fórmula de la tabla dinámica por el de una celda. Ejeplo "Colombia", "Sector construcción".
+
+En pocas palabras, editamos la fórmula de la tabla dinámica.
+
+# Buscar objetivo
+
+En inglés es Goal Seek.
+
+Es un proceso iterativo.
+
+Datos -> Análisis de hipótesis -> Buscar objetivo
+
+Definimos la celda resultado, el valor objetivo, la celda que se va a cambiar.
+
+Hay un truco para resolver problemas con números grandes.
+
+Aquí hay un reto interesante.
+
 
