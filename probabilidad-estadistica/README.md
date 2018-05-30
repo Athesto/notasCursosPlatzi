@@ -31,3 +31,10 @@ Pueden ser:
 - Seguro: Sin posibilidad a fallo.
 - Imposible: Sin posibilidad de éxito.
 
+# Cálculo de probabilidades
+
+Regla de Laplace: En experimentos equiprobables
+
+P(A)=Casos favorlables de A/Casos posibles
+
+
