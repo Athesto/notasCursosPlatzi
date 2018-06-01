@@ -49,9 +49,33 @@ Funciones:
 - (d/dx)X^n = nX^(n-1)
 - (d/dx)CX^n = nCX^(n-1)
 
-# Derivada de funciones algebraicas
+# Derivada de funciones algebraicas suma y resta
 
 - Suma: Es equivalente a la suma de la derivada de cada término.
 - Resta: Es equivalente a la resta de la derivada de cada término.
 
+# Derivada de funciones algebraicas multiplicación I
 
+- d/dx(uv)= u(d/dx)V+V(d/dx)u; Donde u y V son dos polinomios.
+
+# Derivada de funciones algebraicas Multiplicación II
+
+Es un ejemplo con raíces.
+
+# Derivada de funciones algebraicas Muliplicación III
+
+Aquí se usa producto común.
+
+# Derivadas de funciones algebraicas de División I
+
+d/dx (u/v) = [v(d/dx)(u)-u(d/dx)(v)]/[v^2] @v!=0
+
+# Derivadas de funciones algebraicas de División II
+
+> "El cálculo no solo está hecho para resolverlo y ya"
+
+Si no simplificamos nuestras funciones en cualquier campo de estudio ser hará más complicado implementarla. Como el crecimiento de las bacterias, etc.
+
+# Derivadas de funciones algebraicas de División III
+
+El ejercicio es `y=2x/sqrt(x+1)` sqrt: Raíz cuadrada
