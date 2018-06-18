@@ -37,4 +37,26 @@ Regla de Laplace: En experimentos equiprobables
 
 P(A)=Casos favorlables de A/Casos posibles
 
+# Probabilidad compuesta y Diagramas de árbol
 
+Otro nombre es probabilidad condicionada.
+
+> Es aquella donde intervienen más de un experimento aleatorio.
+
+Ejemplo de ir un lugar o no y contar con el permiso o no.
+
+Otro ejemplo es haciendo un diagrama de árbol de tres lanzamientos de una moneda y la probabilidad de que salgan dos cruces.
+
+El espacio muestral (omega) es equivalente a 8 sucesos elementales.
+
+Como es un suceso equiprobable:
+
+P(Cada rama completa) = 1/2 * 1/2 * 1/2 = 1/8
+
+Las ramas que cumplen la condición de dos cruces son: C++, +C+, ++C, +++
+
+Cada una de estas ramas tienen una probabilidad de 1/8 que al sumarlas:
+
+p(A) = 1/8+1/8+1/8+1/8 = 4/8 = 1/2
+
+Entonces la probabilidad de que ocurra el suceso A, es de 50%.
