@@ -226,6 +226,120 @@ Frecuencia relativa ( fi -> n/n° total de alumnos) La suma de esta frecuencia d
 Frecuencia relativa acumulada (N/n° Total de alumnos)
 - Dos columnas de frecuencias absolutas y relativa acumulada multiplicada 100%
 
+# Tablas de frecuencia en distribución de datos: Ejercicios
 
+Ejercicio: Lista de goles de Messi de la temporada 2011-2012 de la liga, hacer una tabla de frecuencia (sa -> Que estuvo sancionado)
+
+Datos: 3,2,0,3,0,3,0,2,0,0,3,1,1,0,1,0,1,0,2,3,0,1,0,4,1,0,2,1,3,1,1,2,1,2,0,2,4,0
+
+
+| Xi | ni| Ni| fi(ni/N) | Fi(Ni/N) | Fr(%) | Fra(%) |
+|---|---|----|----------|----------|-------|--------|
+|0 |  13|  13 | 0.342   | 0.342    |  32.2 |  34.2  |
+|1|  10 |  23 | 0.363   | 0.605    |  26.3 |  60.5  |
+|2|   7 |  30 | 0.184   | 0.789    |  18.4 |  68.9  |
+|3|   6 |  36 | 0.157   | 0.947    |  15.7 |  94.7  |
+|4|   2 |  38 | 0.052   | 1        |  5.2  |  100   |
+|Total |  38 |     | 0.998   |          |  99.8 |        |
+
+N = 38
+
+# Tablas de frecuencia gráficas
+
+Distribución de datos y gráficas más utilizadas.
+
+> La **Distribución de datos es esencial para elegir el método estadístico correcto
+
+Gráficas: Existen diversos tipos de gráficas. Pueden proveer instantáneamente sobre la distribución de un conjunto de datos.
+
+Diagrama de sectores: Es un diagra de tortas. Se utilizan y agregan dos tablas
+
+|Goles por partido (Xi)| Frecuencia absoluta (ni) | Arco de grados (0=(ni*360°)/N)|Porcentaje de la gráfica(Fr en %)|
+|----------------------|--------------------------|-------------------------------|---------------------------------|
+| 0 | 13 | 123.15 | 34.2 |
+| 1 | 10 | 94.73  | 26.3 |
+| 2 | 7  | 66.31  | 18.4 |
+| 3 | 6  | 56.84  | 15.7 |
+| 4 | 2  | 18.94  |  5.2 |
+| Total | N=38 | 359.97 | 99.8 |
+
+En el gráfico se usa la columna de Frecuencia relativa
+
+Polígono de frecuencia: Se utilizan trazando los puntos que representan las frecuencias (nativas o absolutas según el caso) y uniéndolos mediante segmentos. En el Eje X: Cantidad de goles, en el Eje Y: Frecuencias.
+
+Gráfica de barras: La altura se toma igual a la frecuencia absoluta o relativa (según la distribución de frecuencias que estemos representando), consiguiendo de esta manera rectángulos con áreas proporcionales que se quiren representar.
+
+# Parámetros estadísticos centralización
+
+Medidas de tendencia central: Son los representantes de  los datos donde la mayoría se considera los mejores (michael jackson, ect).
+
+Parámetros estadísticos:
+1. Centralización: Son los valores centrales del conjunto de valores qrecogidos que representan, de forma global, a toda la población o la muestra. Aunque no sepamos del tema sabemos que es un representante del sector.
+1.1. Media: Es el valor característico de la serie de datos resultado de la suma de todas las observaciones dividido por el número total de datos.
+x⁻ = (x1+x2+x3+xn)/N
+
+La línea de arriba se llama testada.
+
+1.2. Mediana: Es el valor de posición central en un conjunto de datos ordenados. Dependiendo de si el número de datos es impar o par, se utilizan las siguientes fórmuas, en ese orden:
+Mediana(X) = X|(N+1)/2
+Mediana(X) = [X|N/2 + X|(N/2 +1)]/2
+
+> Es el dato de justo del medio. De una cantidad impar, como el siete sería el cuarto número. Si es par, se ordenan y se aplica la segunda fórmula con los dos valores del medio.
+
+1.3. Moda: Es el valor repetido del conjunto de datos. Puede haber más de una moda. Es el número que más se repite de un conjunto de datos.
+
+# Parámetros estadísticos centralización: Ejercicio
+
+Datos: 3,2,0,3,0,3,0,2,0,0,3,1,1,0,1,0,1,0,2,3,0,1,0,4,1,0,2,1,3,1,1,2,1,2,0,2,4,0
+
+Datos ordenados: 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 3 3 3 3 3 3 4 4
+
+**Media(X⁻)** = 50(goles)/38(partidos) = 1.31
+
+**Mediana**
+Posición de la mediana = 38/2 = 19 (se marca el 19avo de atrás para adelante y de adelante para atrás de la secuencia numérica ordenada)
+
+Mediana = (1+1)/2 = 2/2 = 1
+
+**Moda** = 0
+
+> Notas: Media es el promedio, mediana es el valor del medio del set de datos y moda es el número que más se repite.
+
+# Gráficas de dispersión
+
+Relacionan los datos de estudio: Estas gráficas las representamos en un diagrama matemático mediante coordenadas cartesisanas que generan puntos dispersos alrededor del plano.
+
+También llamado nube de puntos.
+
+Analiza la relación entro dos variables estadísticas bidimensionales, conociendo qué tanto se afectan entre sí o qué tan independientes son una de al otra.
+
+Una es una variable dependiente y la otra es independiente.
+
+Estas son las estadísticas de los goles anotados por de Lionel Messi en cada temporda jugada con el Club Barcelona
+
+| Temporada | Goles |
+|-----------|-------|
+| 2004-2005 | 1 |
+| 2005-2006 | 8 |
+| 2006-2007 | 17 |
+| 2007-2008 | 16 |
+| 2008-2009 | 38 |
+| 2009-2010 | 47 |
+| 2010-2011 | 53 |
+| 2011-2012 | 73 |
+| 2012-2013 | 60 |
+| 2013-2014 | 41 |
+| 2014-2015 | 58 |
+| 2015-2016 | 41 |
+| 2016-2017 | 54 |
+| 2011-2012 | 73 |
+| 2012-2013 | 60 |
+| 2013-2014 | 41 |
+| 2014-2015 | 58 |
+| 2015-2016 | 41 |
+| 2016-2017 | 54 |
+
+
+Se grafica un gráfico de dispersión en el Eje X -> Temporada y Eje Y -> Goles
 
 
