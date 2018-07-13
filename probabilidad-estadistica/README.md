@@ -342,4 +342,258 @@ Estas son las estadísticas de los goles anotados por de Lionel Messi en cada te
 
 Se grafica un gráfico de dispersión en el Eje X -> Temporada y Eje Y -> Goles
 
+# Tipos de correlación y covarianza
+
+Tipos de correlación: Según el comportamiento de las variables de estudio. Podemos encontrar tres tipos de correlación: Directa, inversa y nula.
+
+Covarianza: (S|xy o O|xy):
+- Es la media aritmética de los productos de las desviaciones de cada una de las variables respecto a sus medias respectivas.
+- Al determinar el valor de la covarianza, nos ayudará a comprender el tio de correlación lineal.
+
+> Nos va a dar pauta para saber de cómo están relacionadas estas variables.
+
+Correlación directa  (Covarianza +): Se representa cuando una variable aumenta o disminuye y a otra también, respectivamente. Ha una relación proporcional. Es una distribución de datos con tendencia lineal. Por ejemplo: En una fábrica mientras más ventas, más ingresos.
+
+> Si la covarianca es positiva la correlación va a ser directa. Es una pendiente en crecimiento de izquierda a derecha.
+
+Correlación inversa (covarianza -): Se presenta cuando una variable se comporta de forma contraria a la otra; si una variable aumenta, la otra disminuye. hay una relacion inversa proporcional.
+
+> Es una pendiente negativa. Inclinado de forma descendente de izquierda a derecha.
+
+Correlación nula: Se da cuando no se encuentra un comportamiento entre las variables. Son puntos dispersos completo por todo el plano.
+
+Correlación fuerte: Los puntos están cercanos a la línea de regresión.
+
+Correlación débil: Cuando los puntos tienden a formar una línea pero no están muy cercanos a una de regresión.
+
+# Rango
+
+Dispersión de distribuciones.
+
+**Parámetros estadísticos**
+
+2. Dispersión: Son una serie de valores que indican lo dispersos o agrupados están los datos entre sí y respecto a la media. Es decir qué tan juntos o separados están nuestros datos.
+
+2.1. Rango: Es el recorrido de la distribución estadística. Dada una serie de valores X1, X2, ..., Xn. Su recorrido es la diferencia aritmética entre el máximo y el mínimo de estos valores:
+
+Esto es para datos no agrupados.
+
+Re = Xi(max) - Xi(min)
+
+Siendo i = 1,2,...,n.
+
+Ejemplo: Sea el siguiente conjunto de datos: 12, 15, 17, 23, 25, 28. Hallar el rango.
+
+Xmáx = 28
+Xmin = 12
+
+Rango = 28 - 12 = 16
+
+Rango para datos agrupados: Si los datos están agrupados en una tabla de frecuencias, el recorrido es la diferencia entre el límite real superior del último intervalo y el límite real inferior del primer intervalo.
+
+R = Lmáx - Lmin
+
+Ejemplo: Según los datos de la tabla, hallar el rango:
+
+|Peso (Kg) | fi |
+|----------|----|
+|55.0 - 63.0 | 5 |
+| 63.1- 71-1 | 15|
+| 71.2 - 79.2 | 12 |
+| 79.3 - 87.3 | 5 |
+| 87.4 - 95.4 | 3 |
+| Total | 40 |
+
+Lmin = 55
+Lmáx =95.4
+R = 40.4
+
+El rango mide **"la dispersión total"** del conjunto de datos. Aunqu el rango es una medida de dispersión simple y que se calcula con facilidad, su debilidad preponderante es que no toma en consideraación la forma en que se distribuyen los datos entre los valores más pequeños y los más grandes.
+
+> No podemos tomarlo como parámetro principial porque nos generaliza qué tan dispersos están todos nuestros conjunto de datos porque no toma las dispersión de los datos. Solo nos sirve para tenerlo la dispersión de los datos de manera general.
+
+# Desviación media
+
+2.2. Desviación media: Es la media aritmética de los valores absolutos de las desviaciones de todos los datos respecto  la media aritmética.
+
+> Es un número que nos indica la diferencia o el promedio de la diferencia que nos vamos a encontrar entre los valores absolutos de cada uno de nuestros elementos con la media aritmética.
+
+Ejemplo: Obtener la desviación media para los datos 4, 7, 8, 10 y 16
+
+X⁻ = (4+7+8+10+16)/5 = 45/5 = 9
+
+DM = (|4-9|+|7-9|+|8-9|+|10-9|+|16-9|)/5 = 16/5 = 3.2
+
+**Desviación media para datos agrupados**: Si los datos vienen agrupados en una tabla de frecuencias, la expresión es:
+
+DM = [sumatoria(|Xi - X⁻|)*fi;n,i=1]/N
+
+Con i = 1, 2, ..., n
+
+Obtener la desviación media de la siguiente distribución
+
+|   |xi  | fi  | xi*fi | xi-x⁻ | (xi-x⁻)*fi |
+|---|----|-----|-------|-------|------------|
+| [10,15] | 12.5 | 3 | 37.5 | 27.858 |
+| [15,20] | 17.5 | 5 | 87.5 | 21.43 |
+| [20,25] | 22.5 | 7 | 157.5 | 4.998 |
+| [25,30] | 27.5 | 4 | 110  | 22.856 |
+| [30,35] | 32.5 | 2 | 65   | 21.428 |
+|         |      | 21| 457.5| 98.57
+
+X⁻ = 457.5/21 = 21.786
+Dx = 98.57/21 = 4.69
+
+# Varianza y desviación estándar
+
+2.3. Desviación estándar: Es qué tan separados están nuestros datos.
+2.4. Varianza: Es la raíz cuadrada de la desviación estándar.
+
+Ejemplo calcualar la varianza y desviación estándar de los siguientes números.
+
+Datos: 1, 2, 5, 7 y 9
+
+X⁻ = (1+2+5+7+9)/5 = 24/5 = 4.8
+
+Luego restar lo siguiente:
+
+4.8-1=3.8 Se elevan al 2 -> 14.44
+4.8-2=2.8  -> 7.84
+4.8-5=-0.2 -> 0.04
+4-8-7=-2.2 -> 4.84
+4.8-9= -4.2 -> 17.64
+        Total: 44.8
+
+Vaianza = 44.8/5 = 8.96
+Desviación estándar = sqrt(8.99) = 2.99
+
+Con la desviación se utiliza el margen de más o menos. Es decir, tenemos el límite.
+
+Peso normal= 4.8
+Extra alto de peso= 7.8
+Extra bajo de peso= 1.8
+
+# Coeficiente de correlación
+
+2.4. Coeficiente de correlación: Nos describe cómo es la relación existente entre dos variables. 
+
+Enunciados:
+
+- Es un valor cuantitativo de la relación entre dos o más variables.
+- La correlación de proporcionalidad directa o positiva se establece con los valores +1.00 y de proporcionaldad inversa o negativa, con -1.00.
+- No existe relación entre las variables cuando el coeficiente es de 0.00
+
+A través del valor del coeficiente de correlación podemos tener una referencia de la gráfica y viceversa.
+
+> Las gráficas de los coeficientes de relación de 0 tienen formas muy intersantes.
+
+Ejercicio: En una empresa de transporte trabajan 4 conductores. Los años de antigüedad de sus permisos de conducir y el número de infracciones cometidas en el último año por cada uno de ellos son los siguientes:
+
+|X: Años de antigüedad | Y: Infracciones |
+|----------------------|-----------------|
+|3 | 4 |
+|4 | 3 |
+|5 | 2 |
+|6 | 1 |
+
+a. Representar gráficamente los datos anteriores. Razonar si los datos muestran una correlación positiva o negativa.
+b. Calcular el coeficiente de correlación e interpretarlo en términos de la situación real.
+
+**Nota** No se termina de cargar el vídeo.
+
+# Cuartiles, deciles y percentiles
+
+3. Parámetros estadísticos de posición: Tienen como funcion ubicar la distribución a lo largo de los valores de la misma. Se suelen utilizar una serie de valores ue dividen la muestra en tramos iguales.
+
+3.1. Cuartiles (son 3): Son los tres valores de la variable que dividen a un conjunto de datos ordenados en cuatro partes iguales. Q1,Q2,Q3 determinan los valores correspondientes al 25%, 50% y al 75% de los datos. Q2 coincide con la mediana.
+
+3.2. Deciles (son 9): Son los nueve valores que dividen la serie de datos en diez partes iguales. Dan los valores correspondientes al 10%, 20%... y al 90% de los datos. D5 coincide con la mediana.
+
+3.3. Percentiles (son 99): Son los 99 valores que dividen la serie de datos en 100 partes iguales. Dan los valores correspondientes al 1%, 2%... y al 99% de los datos. P50 coincide con la mediana y D5.
+
+# Cuartiles
+
+Son los tres valores de la variable que dividen a un conjunto de datos ordenados en cuatro partes iguales.
+
+Pasos:
+- Ordenar los datos de menor a mayor
+- Buscamos el lugar que ocupa cada cuartil mediante la expresión
+
+Datos: 2,3(Q1),4,5(Q2),6,7(Q3),9
+
+# Deciles
+
+Son los nueve valores que dividen la seride de datos en diez partes iguales
+
+|  |fi | Fi |
+|--|---|----|
+|[50,60] | 8 | 8 |
+|[60,70] | 10 | 18 |
+|[70,80] | 16 | 34 |
+|[80,90] | 14 | 48
+|[90,100] | 10 | 58 |
+|[100,110] | 5 | 63 |
+|[110,120] | 2 | 65 |
+|          | 65|    |
+
+1er Decil
+65*1/10 = 6.5
+D1=50+(6.5-0)/8*10 = 58.12
+  
+2do Decil
+65*2/10=13
+D2=60*(13-8)/10 *10 = 65
+
+3er Decil
+65*3/10=19.95
+D3=70+(19.5-18)/16 * 10 = 70.94
+
+4to Decil
+65*4/10 = 26
+D4 = 70+(26-18)/16 * 10 = 75
+
+5to Decil
+65.5*5/10 = 32.5
+D5 = 70+(32.5-18)/16 * 10 = 79.06
+
+6to Decil
+65*6/10 =39
+D6=80+(39-34)/14 * 10 = 83.57
+
+7mo Decil
+65*7/10 = 45.5
+D7 = 80+(45.5-34)/14 * 10 = 88.21
+
+8vo Decil
+65*8/10 = 52
+D8=90+(52-48)/10 * 10 = 94
+
+9no decil
+65*9/10 = 58.5
+D9=100*(58.5-58)/5 * 10 = 101
+
+# Percentiles
+
+Son los 99 valores que dividen la serie de datos en 100 partes iguales
+
+Con la misma tabla de datos
+
+Percentil 35
+65*35/100 22.75
+
+> 22.75 sobrepasa la frecuencia 16 y antecede a 34
+
+P35=70+(22.75-18)/16 * 10 = 72.97
+
+Percentil 60
+65*60/100 = 39
+
+> 39 está entre 14 y 48 de frecuencia
+
+P60 = 80+(39-34)/14 * 10 = 83.57
+
+# ¿Qué es y para qué sirve la regresión lineal?
+
+# Ejemplo de regresión lineal (tipo de correlación)
+
 

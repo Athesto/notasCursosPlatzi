@@ -82,13 +82,33 @@ Hacer ***Machine Learning*** corresponde a trabajar en un ciclo, ir trabajando v
 
 ***Ciclo de Machine Learning***
 - Definición del problema
+  - Aprendizaje Supervisado
+  - Variable objetivo
+  - Métrica de evaluación
+
 - Preparación de los datos
+  - Obtención de datos
+  - Join o BDD's
+  - Limpieza de datos
+
 - Representación de los datos
+  - Análisis exploratorio de datos
+  - Extracción manual de features
+  - Extracción automática
+  - Selección de Features
+
 - Modelamiento / Algoritmos de ML
+  - Selección de modelo
+  - Fiteo de Algoritmo
+  - Predicción
+
 - Evaluacion (Que satisfaga las necesidades del negocio, de no ser así repetir el ciclo)
+
 
 Este no es el final del proceso, se debe iterar hasta que en alguna de las iteraciones salga la solución al problema
 - Producción (Fin del proceso)
+
+> Feture enginering es el arte de elegir adecuadamente las columnas a usar en el algoritmo.
 
 > La navaja de Ockham o Principio de Parsimonia: La solución más simple casi siempre es la mejor. Comenzar por lo más simple e ir repitiendo el ciclo haciendo el algoritmo más complejo solo si es necesario.
 
